@@ -1,0 +1,96 @@
+// Переменные
+$primary-color: #3498db;
+$secondary-color: #2c3e50;
+$accent-color: #e74c3c;
+$border-radius: 12px;
+$spacing: 16px;
+
+// Миксин для кнопок
+@mixin button-style($bg-color, $hover-color) {
+  padding: 12px 24px;
+  background-color: $bg-color;
+  color: white;
+  border: none;
+  border-radius: $border-radius / 2;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background-color: $hover-color;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+}
+
+// Миксин для теней
+@mixin card-shadow {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+  
+  &:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  }
+}
+
+// Стили для карточки товара с вложенной структурой
+.product-card {
+  max-width: 350px;
+  margin: 50px auto;
+  background: white;
+  border-radius: $border-radius;
+  overflow: hidden;
+  @include card-shadow;
+  
+  &__image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+  }
+  
+  &__content {
+    padding: $spacing;
+  }
+  
+  &__title {
+    font-size: 24px;
+    color: $secondary-color;
+    margin: 0 0 12px 0;
+    font-weight: 700;
+  }
+  
+  &__description {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+    margin: 0 0 $spacing 0;
+  }
+  
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: $spacing;
+  }
+  
+  &__price {
+    font-size: 28px;
+    font-weight: 700;
+    color: $accent-color;
+  }
+  
+  &__button {
+    @include button-style($primary-color, darken($primary-color, 10%));
+  }
+}
+
+// Общие стили
+body {
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
+}
